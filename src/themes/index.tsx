@@ -5,7 +5,7 @@ interface Props {
     children: ReactNode;
 }
 
-export default ({ children }: Props) => {
+const ThemeCustomization = ({ children }: Props) => {
     const theme = useTheme();
     const themeOptions: ThemeOptions = useMemo(
         () => ({
@@ -33,3 +33,5 @@ export default ({ children }: Props) => {
         </ThemeProvider>
     );
 };
+
+export default ThemeCustomization;
