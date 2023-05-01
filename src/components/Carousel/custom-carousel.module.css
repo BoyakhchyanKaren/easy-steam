@@ -1,0 +1,20 @@
+.carousel__dot {
+    width: 35px;
+    border-radius: 10px;
+    display: block;
+    height: 12px;
+    background-color: #444444;
+    margin-left: 10px;
+}
+
+.carousel__dot:hover {
+    cursor: pointer;
+}
+
+.carousel__dot--active {
+    width: 35px;
+    display: block;
+    height: 12px;
+    background-color: #8753CF;
+    margin-left: 10px;
+}

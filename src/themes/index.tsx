@@ -10,7 +10,24 @@ const ThemeCustomization = ({ children }: Props) => {
     const themeOptions: ThemeOptions = useMemo(
         () => ({
             direction: 'ltr',
-            palette: theme.palette,
+            palette: {
+                ...theme.palette,
+                common: {
+                    white: '#D9D9D9',
+                },
+                secondary: {
+                    main: '#8753CF',
+                },
+                primary: {
+                    main: '#343434',
+                    dark: '#1E1E1E',
+                    light: '#444444',
+                    contrastText: '#939393',
+                },
+                error: {
+                    main: '#B72337',
+                }
+            },
             mixins: {
                 toolbar: {
                     minHeight: '48px',
