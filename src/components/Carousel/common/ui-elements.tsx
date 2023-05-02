@@ -1,4 +1,4 @@
-import { Button, Typography, styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
 import { borderRadius, paddings } from "constants/themeConstants";
 
 const MainCarouselButton = styled(Button)(({ theme }) => ({

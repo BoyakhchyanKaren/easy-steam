@@ -1,8 +1,6 @@
 import React from 'react';
 import { Card, CardMedia, Grid } from '@mui/material';
-import { margins, paddings } from 'constants/themeConstants';
-import { DiscountButton, TextTypography22 } from '@components/common/ui-elements';
-import { MainCarouselButton } from '@components/Carousel/common/ui-elements';
+import { paddings } from 'constants/themeConstants';
 import { mainCarouselResponsive } from '@components/Carousel/styles';
 import { items } from '@components/Carousel/MainCarousel/helpers';
 import { RenderCarousel } from '@components/Carousel/common';

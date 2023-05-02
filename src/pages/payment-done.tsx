@@ -1,7 +1,5 @@
 import PaymentPageDone from "@components/PaymentDone";
 
-const PaymentDone = () => {
-    return <PaymentPageDone />
-};
+const PaymentDone = () => <PaymentPageDone />;
 
 export default PaymentDone;

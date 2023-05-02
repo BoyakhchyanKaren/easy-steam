@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { paddings, borderRadius, carouselWidth, margins } from "constants/themeConstants";
+import { paddings, borderRadius } from "constants/themeConstants";
 
 export const useDrawerStyles = makeStyles((theme: Theme) => ({
     root: {
