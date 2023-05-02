@@ -30,4 +30,15 @@ export const useBasketStyles = makeStyles((theme: Theme) => ({
         justifyContent: 'center',
         gap: gaps.gap24
     },
+    paymentRootCard: {
+        height: 250,
+        width: '100%',
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: borderRadius.radius12,
+        padding: paddings.all32,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        gap: gaps.gap24
+    },
 }));

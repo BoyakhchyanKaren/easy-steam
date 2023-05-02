@@ -14,7 +14,7 @@ const OutlineInputStyle = styled(OutlinedInput, { shouldForwardProp })(({ theme 
     '& input': {
         backgroundColor: 'transparent',
         paddingLeft: paddings.left4,
-        color: theme.palette.common.white,
+        color: theme.palette.common.white
     },
     [theme.breakpoints.down('lg')]: {
         width: 250

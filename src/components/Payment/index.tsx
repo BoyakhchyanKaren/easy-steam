@@ -1,4 +1,3 @@
-import BaskterCard from "@components/Basket/BasketCard";
 import CountCard from "@components/Basket/CountCard";
 import { CustomDivider, TextTypography22 } from "@components/common/ui-elements";
 import { Grid } from "@mui/material";
@@ -18,7 +17,7 @@ const PaymentDetails = () => {
                         <PaymentContent />
                     </Grid>
                     <Grid item xs={4}>
-                        <CountCard />
+                        <CountCard title={"Платить $ 15"} />
                     </Grid>
                 </Grid>
             </Grid>

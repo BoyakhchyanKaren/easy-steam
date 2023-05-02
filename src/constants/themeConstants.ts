@@ -148,6 +148,7 @@ export const paddings = {
   topBottom20: '20px',
   topBottom24: '24px',
   topBottom32: '32px',
+  topBottom64: '64px',
   leftRight0: 0,
   leftRight2: '2px',
   leftRight4: '4px',

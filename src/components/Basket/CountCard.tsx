@@ -2,7 +2,7 @@ import { Card, Grid } from "@mui/material";
 import { useBasketStyles } from "./styles";
 import { SecondaryLigtButton, TextTypography18 } from "@components/common/ui-elements";
 
-const CountCard = () => {
+const CountCard = ({ title }: { title: string }) => {
     const classes = useBasketStyles();
 
     return (
@@ -11,7 +11,7 @@ const CountCard = () => {
                 <TextTypography18>Общая Сумма</TextTypography18>
                 <TextTypography18>$ 16</TextTypography18>
             </Grid>
-            <SecondaryLigtButton>Перейти К Оплате</SecondaryLigtButton>
+            <SecondaryLigtButton>{title}</SecondaryLigtButton>
         </Card>
     )
 };
