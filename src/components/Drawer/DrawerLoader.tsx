@@ -1,5 +1,5 @@
 import React, { SetStateAction } from "react"
-import { Box, Grid } from "@mui/material"
+import { Box } from "@mui/material"
 import { PrimaryLightButton, TextTypography16 } from "@components/common/ui-elements"
 import CircularLoading from "@components/Loading"
 

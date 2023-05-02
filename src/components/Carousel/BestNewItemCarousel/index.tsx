@@ -21,11 +21,10 @@ const BestNewItemCarousel = () => {
         const newStates = [...buttonStates];
         if (buttonStates[index] === false) {
             newStates[index] = true;
-            setButtonStates(newStates);
         } else {
             newStates[index] = false;
-            setButtonStates(newStates);
         }
+        setButtonStates(newStates);
     };
 
     const buttonStyle = (index: number) => ({

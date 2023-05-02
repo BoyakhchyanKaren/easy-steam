@@ -10,14 +10,14 @@ import { getStyles, sortItems, useStyles } from "./styles";
 const SortSelectMenu = () => {
     const classes = useStyles();
     const theme = useTheme();
-    const [personName, setPersonName] = useState<string>('');
+    const [menuItemValue, setMenuItemValue] = useState<string>('');
     const [menuItemsOpen, setMenuItemsOpen] = useState(false);
 
-    const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const handleChange = (event: SelectChangeEvent<typeof menuItemValue>) => {
         const {
             target: { value },
         } = event;
-        setPersonName(value);
+        setMenuItemValue(value);
     };
 
     return (
@@ -28,7 +28,7 @@ const SortSelectMenu = () => {
                 onOpen={() => setMenuItemsOpen(true)}
                 open={menuItemsOpen}
                 onClose={() => setMenuItemsOpen(false)}
-                value={personName}
+                value={menuItemValue}
                 IconComponent={(props) => <KeyboardArrowDownIcon {...props} fontSize="large" />}
                 className={classNames(classes.select, classes.input)}
                 onChange={handleChange}
@@ -52,7 +52,7 @@ const SortSelectMenu = () => {
                     <MenuItem
                         key={sortItem}
                         value={sortItem}
-                        style={getStyles(sortItem, personName, theme)}
+                        style={getStyles(sortItem, menuItemValue, theme)}
                     >
                         {sortItem}
                     </MenuItem>

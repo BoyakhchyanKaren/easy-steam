@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material"
 import Details from "@components/CardDetails";
 
 const CardDetails = () => {

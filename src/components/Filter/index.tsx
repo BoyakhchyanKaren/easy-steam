@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Divider, Grid, IconButton, Typography, useTheme, ToggleButtonGroup, ToggleButton, TextField } from "@mui/material";
+import { Grid, IconButton, useTheme } from "@mui/material";
 import { borderRadius, carouselWidth, margins, paddings } from "constants/themeConstants";
 import FilterIcon from "assets/icons/Filter/FilterIcon";
 import { TextTypography18, CustomDivider, FilterButton, FilterButtonNextButton } from "@components/common/ui-elements";

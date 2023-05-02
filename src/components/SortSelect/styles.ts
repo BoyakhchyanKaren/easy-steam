@@ -6,10 +6,10 @@ import { borderRadius } from "constants/themeConstants";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-export const getStyles = (name: string, personName: string, theme: Theme) => {
+export const getStyles = (name: string, menuItemValue: string, theme: Theme) => {
     return {
         fontWeight:
-            personName.indexOf(name) === -1
+            menuItemValue.indexOf(name) === -1
                 ? theme.typography.fontWeightRegular
                 : theme.typography.fontWeightMedium,
     };
@@ -41,6 +41,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
 export const sortItems = [
     'Алфавитный',
     'Снижение цены',
-    'April Tucker',
     'Увеличение цены',
 ];

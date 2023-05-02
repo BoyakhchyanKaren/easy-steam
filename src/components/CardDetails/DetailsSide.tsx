@@ -2,8 +2,11 @@ import React from "react";
 import { Grid } from "@mui/material";
 import { TextTypography18, TextTypography16, SecondaryLigtButton, PrimaryLightButton, DiscountButton } from "@components/common/ui-elements";
 import { margins, paddings } from "constants/themeConstants";
+import { useRouter } from "next/router";
 
 const DetailsSide = () => {
+    const { push } = useRouter();
+    const onBasketPageClick = () => push('/basket');
     return (
         <Grid item xs={3} container direction={"column"} alignItems={"flex-start"} gap={4} ml={margins.left60} mt={margins.top16}>
             <TextTypography18>PUBG: BATTLEGROUNDS</TextTypography18>
@@ -15,7 +18,7 @@ const DetailsSide = () => {
                 ДАТА ВЫХОДА: 21 дек. 2017
             </TextTypography16>
             <SecondaryLigtButton fullWidth>Купить Сейчас!</SecondaryLigtButton>
-            <PrimaryLightButton fullWidth>В Корзину</PrimaryLightButton>
+            <PrimaryLightButton fullWidth onClick={onBasketPageClick}>В Корзину</PrimaryLightButton>
             <DiscountButton px={paddings.leftRight74} py={paddings.all6} />
         </Grid>
     )

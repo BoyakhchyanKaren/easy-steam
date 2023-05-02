@@ -1,9 +1,5 @@
 import PaymentPageDenied from "@components/PaymentDenied";
 
-const PaymentDenied = () => {
-    return (
-        <PaymentPageDenied />
-    );
-};
+const PaymentDenied = () => <PaymentPageDenied />;
 
 export default PaymentDenied;

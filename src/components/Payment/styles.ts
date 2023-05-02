@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { borderRadius, gaps, paddings } from "constants/themeConstants";
+import { borderRadius, paddings } from "constants/themeConstants";
 
 export const usePaymentPageStyles = makeStyles((theme: Theme) => ({
     root: {

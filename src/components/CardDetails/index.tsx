@@ -1,4 +1,4 @@
-import { CustomDivider, TextTypography16, TextTypography22 } from "@components/common/ui-elements";
+import { CustomDivider, TextTypography22 } from "@components/common/ui-elements";
 import { Grid } from "@mui/material";
 import { paddings } from "constants/themeConstants";
 import DetailsCarousel from "./DetailsCarousel";
