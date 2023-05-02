@@ -20,7 +20,7 @@ const BasketList = () => {
                         <BaskterCard />
                     </Grid>
                     <Grid item xs={4}>
-                        <CountCard />
+                        <CountCard title={"Перейти К Оплате"} />
                     </Grid>
                 </Grid>
             </Grid>

@@ -1,6 +1,6 @@
 import { MasterCardIcon, QIWICardIcon, SberBankIcon, YMoneyIcon } from "assets/icons/Payment/PaymentIcons";
 import PaymentCards from "./PaymentCards";
-import CircularLoading from "@components/Loading";
+import EmptyPaymentContent from "./EmptyPaymentContent";
 
 const PaymentContent = () => {
     return (
@@ -17,9 +17,7 @@ const PaymentContent = () => {
             <PaymentCards methodTitle="Сбербанк">
                 <SberBankIcon />
             </PaymentCards>
-            <PaymentCards methodTitle="Сбербанк">
-                <CircularLoading />
-            </PaymentCards>
+            <EmptyPaymentContent />
         </>
     )
 }

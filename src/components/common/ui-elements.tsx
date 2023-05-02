@@ -1,6 +1,18 @@
-import { Button, Card, Checkbox, Divider, Grid, Typography, styled, useTheme } from "@mui/material";
+import { Button, Card, Checkbox, Divider, Grid, Theme, Typography, styled, useTheme } from "@mui/material";
 import { borderRadius, margins, paddings } from "constants/themeConstants";
 import { DiscountButtonProps } from "./types";
+import { makeStyles } from "@mui/styles";
+import CircularLoading from "@components/Loading";
+
+const useCommonStyles = makeStyles((theme: Theme) => ({
+    root: {
+        width: '100px',
+        height: '70px',
+        backgroundColor: theme.palette.primary.contrastText,
+        padding: paddings.all12,
+        borderRadius: borderRadius.radius12,
+    }
+}));
 
 
 const TextTypography18 = styled(Typography)(({ theme }) => ({
@@ -119,6 +131,15 @@ const CustomCheckbox = () => {
     )
 }
 
+const EmptyLoadingState = () => {
+    const classes = useCommonStyles();
+    return (
+        <Card elevation={0} classes={{ root: classes.root }}>
+            <CircularLoading />
+        </Card>
+    )
+};
+
 export {
     TextTypography18,
     TextTypography22,
@@ -129,5 +150,6 @@ export {
     PrimaryLightButton,
     SecondaryLigtButton,
     DiscountButton,
-    CustomCheckbox
+    CustomCheckbox,
+    EmptyLoadingState
 }
