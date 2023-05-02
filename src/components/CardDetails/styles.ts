@@ -1,8 +1,7 @@
-import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { paddings, borderRadius, carouselWidth, margins } from "constants/themeConstants";
+import { borderRadius } from "constants/themeConstants";
 
-export const useDetailsCarouselStyles = makeStyles((theme: Theme) => ({
+export const useDetailsCarouselStyles = makeStyles(() => ({
     root: {
         width: 930,
         height: 520,
