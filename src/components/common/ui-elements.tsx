@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Grid, Typography, styled, useTheme } from "@mui/material";
+import { Button, Card, Checkbox, Divider, Grid, Typography, styled, useTheme } from "@mui/material";
 import { borderRadius, margins, paddings } from "constants/themeConstants";
 import { DiscountButtonProps } from "./types";
 
@@ -102,6 +102,21 @@ const DiscountButton = ({ px, py }: DiscountButtonProps) => {
             </Card>
         </Grid>
     )
+};
+
+const CustomCheckbox = () => {
+    const theme = useTheme();
+    return (
+        <Checkbox
+            sx={{
+                color: theme.palette.common.white,
+                "& .MuiSvgIcon-root": { fontSize: 40 },
+                "&.Mui-checked": {
+                    color: theme.palette.common.white,
+                }
+            }}
+        />
+    )
 }
 
 export {
@@ -113,5 +128,6 @@ export {
     FilterButtonNextButton,
     PrimaryLightButton,
     SecondaryLigtButton,
-    DiscountButton
+    DiscountButton,
+    CustomCheckbox
 }

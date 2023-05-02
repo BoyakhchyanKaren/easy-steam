@@ -135,6 +135,7 @@ export const paddings = {
   top40: '40px',
   top42: '42px',
   top48: '48px',
+  top64: '64px',
   top140: '140px',
   topBottom0: 0,
   topBottom2: '2px',
@@ -232,3 +233,10 @@ export const positionSpaces = {
   right16: '16px',
   right20: '20px'
 };
+
+
+export const gaps = {
+  gap8: '8px',
+  gap16: '16px',
+  gap24: '24px',
+}
