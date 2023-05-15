@@ -1,11 +1,13 @@
-import { Paper, Box } from "@mui/material";
+import { Paper, Box, useTheme } from "@mui/material";
 import SteamIcon from "assets/icons/SteamIcon/SteamIcon";
 import Content from "./Content";
 import { TextTypography } from "layout/common";
 
 const Footer = () => {
+    const theme = useTheme();
+
     return (
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: '#343434' }}>
+        <Paper sx={{ backgroundColor: theme.palette.primary.main, borderRadius: 0 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, justifyContent: 'center', py: '15px' }}>
                 <Box>
                     <SteamIcon />

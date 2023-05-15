@@ -1,6 +1,6 @@
-import { Button, Card, Checkbox, Divider, Grid, Theme, Typography, styled, useTheme } from "@mui/material";
+import { Button, Card, Checkbox, Divider, Grid, TextField, Theme, Typography, styled, useTheme } from "@mui/material";
 import { borderRadius, margins, paddings } from "constants/themeConstants";
-import { DiscountButtonProps } from "./types";
+import { CustomCheckboxProps, DiscountButtonProps } from "./types";
 import { makeStyles } from "@mui/styles";
 import CircularLoading from "@components/Loading";
 
@@ -85,44 +85,78 @@ const SecondaryLigtButton = styled(Button)(({ theme }) => ({
     }
 }));
 
-const DiscountButton = ({ px, py }: DiscountButtonProps) => {
+const PrimaryTextField = styled(TextField)(({ theme }) => ({
+    width: '80px',
+    borderRadius: borderRadius.radius12,
+    backgroundColor: theme.palette.primary.main,
+    border: 'none',
+    outline: 'none',
+    "& .MuiInputBase-root": {
+        color: theme.palette.common.white,
+        borderRadius: borderRadius.radius12,
+    },
+}))
+
+const CommonWhiteButton = styled(Button)(({ theme }) => ({
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+    borderRadius: borderRadius.radius10,
+    fontSize: theme.typography.pxToRem(21),
+    textTransform: 'none',
+    fontWeight: 500,
+    "&:hover": {
+        backgroundColor: theme.palette.common.white
+    }
+}));
+
+const DiscountButton = ({ px, py, price, onClick }: DiscountButtonProps) => {
     const theme = useTheme();
 
     return (
         <Grid item container alignItems={"center"} justifyContent={"center"}>
-            <Grid
-                item
-                sx={{
-                    backgroundColor: theme.palette.error.main,
-                    borderTopLeftRadius: borderRadius.radius12,
-                    borderBottomLeftRadius: borderRadius.radius12
-                }}
-                mr={'-14px'}
-                px={px}
-                py={py}>
-                <TextTypography22>-50%</TextTypography22>
-            </Grid>
-            <Card sx={{ borderRadius: borderRadius.radius16 }}>
-                <Grid container justifyContent={"space-between"} alignItems={"center"} gap={3} px={paddings.leftRight12} py={paddings.topBottom6}>
-                    <Typography sx={{ fontSize: '22px' }}>
-                        $30.00
-                    </Typography>
-                    <Typography sx={{ fontSize: '22px' }}>
-                        $30.00
-                    </Typography>
+            <Button fullWidth onClick={onClick}>
+                <Grid
+                    item
+                    sx={{
+                        backgroundColor: theme.palette.error.main,
+                        borderTopLeftRadius: borderRadius.radius12,
+                        borderBottomLeftRadius: borderRadius.radius12
+                    }}
+                    mr={'-14px'}
+                    px={px}
+                    py={py}>
+                    <TextTypography22>-50%</TextTypography22>
                 </Grid>
-            </Card>
+                <Card sx={{ borderRadius: borderRadius.radius16 }}>
+                    <Grid sx={{ height: '45px' }} container flexWrap={"nowrap"} justifyContent={"space-between"} alignItems={"center"} gap={1} px={paddings.leftRight12} py={paddings.topBottom6}>
+                        <TextTypography22 sx={{ textDecoration: 'line-through', color: theme.palette.common.black }}>
+                            {price}
+                        </TextTypography22>
+                        <TextTypography22 sx={{ color: theme.palette.error.main }}>
+                            {price}
+                        </TextTypography22>
+                    </Grid>
+                </Card>
+            </Button>
         </Grid>
     )
 };
 
-const CustomCheckbox = () => {
+const ButtonWitoutDiscount = ({ price }: { price?: string }) => {
+    return (
+        <CommonWhiteButton fullWidth>
+            {price}
+        </CommonWhiteButton>
+    )
+}
+
+const CustomCheckbox = ({ fontSize }: CustomCheckboxProps) => {
     const theme = useTheme();
     return (
         <Checkbox
             sx={{
                 color: theme.palette.common.white,
-                "& .MuiSvgIcon-root": { fontSize: 40 },
+                "& .MuiSvgIcon-root": { fontSize: fontSize ?? 40 },
                 "&.Mui-checked": {
                     color: theme.palette.common.white,
                 }
@@ -151,5 +185,7 @@ export {
     SecondaryLigtButton,
     DiscountButton,
     CustomCheckbox,
-    EmptyLoadingState
+    EmptyLoadingState,
+    ButtonWitoutDiscount,
+    PrimaryTextField
 }

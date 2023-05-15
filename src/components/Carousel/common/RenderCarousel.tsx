@@ -4,6 +4,11 @@ import AliceCarousel, { DotsItem, Responsive } from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { RenderCustomDot, RenderNextButton, RenderPrevButton } from ".";
 import { ReactNode } from "react";
+import styles from '../custom-carousel.module.css';
+import classNames from "classnames/bind";
+import React from "react";
+
+const cx = classNames.bind(styles);
 
 interface RenderCarouselProps {
     children: ReactNode;
@@ -18,7 +23,7 @@ const RenderCarousel = ({ children, headerComponent, responsive, autoWidth, disa
 
     return (
         <Grid item container xs={12} padding={paddings.all24} {...props}>
-            <Grid container alignItems={"center"} pb={paddings.bottom8}>
+            <Grid container alignItems={"center"} pb={paddings.bottom8} className={cx('carousel')}>
                 {headerComponent?.()}
             </Grid>
             <AliceCarousel

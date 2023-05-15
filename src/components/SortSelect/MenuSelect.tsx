@@ -6,9 +6,11 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import classNames from "classnames";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { getStyles, sortItems, useStyles } from "./styles";
+import { useRouter } from "next/router";
 
 const SortSelectMenu = () => {
     const classes = useStyles();
+    const router = useRouter();
     const theme = useTheme();
     const [menuItemValue, setMenuItemValue] = useState<string>('');
     const [menuItemsOpen, setMenuItemsOpen] = useState(false);
@@ -18,6 +20,16 @@ const SortSelectMenu = () => {
             target: { value },
         } = event;
         setMenuItemValue(value);
+    };
+
+    const onMenuItemClick = (itemTitle: string) => {
+        const queryParams = { ...router.query, sort: itemTitle };
+        const newUrl = {
+            pathname: router.pathname,
+            query: queryParams,
+        };
+
+        router.push(newUrl, undefined, { shallow: true });
     };
 
     return (
@@ -53,6 +65,7 @@ const SortSelectMenu = () => {
                         key={sortItem}
                         value={sortItem}
                         style={getStyles(sortItem, menuItemValue, theme)}
+                        onClick={() => onMenuItemClick(sortItem)}
                     >
                         {sortItem}
                     </MenuItem>

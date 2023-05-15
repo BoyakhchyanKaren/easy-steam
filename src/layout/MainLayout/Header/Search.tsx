@@ -37,6 +37,7 @@ const Search = () => {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Поиск"
+                autoComplete="off"
                 startAdornment={
                     <InputAdornment position="start">
                         <SearchIcon sx={{ color: theme.palette.secondary.main }} />

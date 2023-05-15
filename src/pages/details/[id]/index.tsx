@@ -1,7 +1,17 @@
 import Details from "@components/CardDetails";
+import { dispatch } from "@redux/hooks";
+import { gameMiddleware } from "@redux/slices/games";
+import { useEffect } from "react";
 
 const CardDetails = () => {
-    return <Details />
+
+    useEffect(() => {
+        dispatch(gameMiddleware.getGames());
+    }, []);
+
+    return (
+        <Details />
+    )
 };
 
 

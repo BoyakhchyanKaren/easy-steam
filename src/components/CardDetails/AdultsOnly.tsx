@@ -1,14 +1,16 @@
 import React from "react";
 import { TextTypography16, TextTypography22 } from "@components/common/ui-elements";
+import { useAppSelector } from "@redux/hooks";
+import { gameSelector } from "@redux/slices/games";
 
 const AdultsOnly = () => {
+    const currentGame = useAppSelector(gameSelector.currentGame);
+
     return (
         <>
-            <TextTypography22>ОБ ЭТОЙ ИГРЕ</TextTypography22>
+            <TextTypography22>ОПИСАНИЕ КОНТЕНТА ДЛЯ ВЗРОСЛЫХ</TextTypography22>
             <TextTypography16 sx={{ lineHeight: 2 }}>
-                ОПИСАНИЕ КОНТЕНТА ДЛЯ ВЗРОСЛЫХ <br />
-                Разработчики описывают контент так:<br />
-                Эта игра может содержать контент, не подходящий для всех возрастов или для просмотра на работе: Сцены насилия или жестокости, Контент для взрослых
+                {currentGame?.description}
             </TextTypography16>
         </>
     )
