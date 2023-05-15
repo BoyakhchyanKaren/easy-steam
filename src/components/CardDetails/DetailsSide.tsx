@@ -1,25 +1,41 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { TextTypography18, TextTypography16, SecondaryLigtButton, PrimaryLightButton, DiscountButton } from "@components/common/ui-elements";
+import { TextTypography18, TextTypography16, SecondaryLigtButton, PrimaryLightButton, DiscountButton, ButtonWitoutDiscount } from "@components/common/ui-elements";
 import { margins, paddings } from "constants/themeConstants";
 import { useRouter } from "next/router";
+import { dispatch, useAppSelector } from "@redux/hooks";
+import { gameMiddleware, gameSelector } from "@redux/slices/games";
+import { GamesCardProps } from "types/reduxTypes";
 
 const DetailsSide = () => {
     const { push } = useRouter();
-    const onBasketPageClick = () => push('/basket');
+    const currentGame = useAppSelector(gameSelector.currentGame);
+    const onBasketPageClick = () => {
+        dispatch(gameMiddleware.setCurrentGames(currentGame as GamesCardProps));
+        push('/basket');
+    };
+
+    const onPaymentPageClick = () => {
+        push('/payment');
+    }
+
     return (
         <Grid item xs={3} container direction={"column"} alignItems={"flex-start"} gap={4} ml={margins.left60} mt={margins.top16}>
-            <TextTypography18>PUBG: BATTLEGROUNDS</TextTypography18>
+            <TextTypography18>{currentGame?.title}</TextTypography18>
             <TextTypography16>
-                Играйте В PUBG: BATTLEGROUNDS бесплатно. Высаживайтесь в стратегически важных местах,
-                добывайте оружие и припасы и постарайтесь выжить и остаться последней командой на одном из многочисленных полей боя.
+                {currentGame?.description}
             </TextTypography16>
             <TextTypography16>
-                ДАТА ВЫХОДА: 21 дек. 2017
+                {`ДАТА ВЫХОДА: ${currentGame?.dateOfCreation}`}
             </TextTypography16>
-            <SecondaryLigtButton fullWidth>Купить Сейчас!</SecondaryLigtButton>
+            <SecondaryLigtButton fullWidth onClick={onPaymentPageClick}>Купить Сейчас!</SecondaryLigtButton>
             <PrimaryLightButton fullWidth onClick={onBasketPageClick}>В Корзину</PrimaryLightButton>
-            <DiscountButton px={paddings.leftRight74} py={paddings.all6} />
+            {
+                currentGame?.hasDiscount ? (
+                    <DiscountButton px={paddings.leftRight74} py={paddings.all6} price={currentGame?.price} />
+                ) : <ButtonWitoutDiscount price={currentGame?.price} />
+            }
+
         </Grid>
     )
 };

@@ -14,9 +14,6 @@ const PaymentContent = () => {
             <PaymentCards methodTitle="ЮMoney">
                 <YMoneyIcon />
             </PaymentCards>
-            <PaymentCards methodTitle="Сбербанк">
-                <SberBankIcon />
-            </PaymentCards>
             <EmptyPaymentContent />
         </>
     )

@@ -6,23 +6,26 @@ import Footer from './Footer';
 import MainSteam from '@components/Main';
 
 const MainLayout = ({ children }: React.PropsWithChildren) => {
-    const { asPath } = useRouter();
+    const { pathname } = useRouter();
 
     return (
-        <Box sx={{
-            display: 'flex',
-            backgroundColor: '#1E1E1E'
-        }}>
-            <CssBaseline />
-            <AppBar component="nav" sx={{ px: 9 }}>
-                <Header />
-            </AppBar>
-            <Box component="main" sx={{ pt: 5, px: 12, pb: 21, width: '100%' }}>
-                <Toolbar />
-                {asPath === '/' ? (<MainSteam />) : children}
-                <Footer />
+        <>
+            <Box sx={{
+                display: 'flex',
+                backgroundColor: '#1E1E1E',
+                minHeight: '100vh',
+            }}>
+                <CssBaseline />
+                <AppBar component="nav" sx={{ px: 9 }}>
+                    <Header />
+                </AppBar>
+                <Box component="main" sx={{ pt: 5, px: 12, pb: 5, width: '100%' }}>
+                    <Toolbar />
+                    {pathname === '/' ? (<MainSteam />) : children}
+                </Box>
             </Box>
-        </Box>
+            <Footer />
+        </>
     );
 }
 

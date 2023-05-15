@@ -18,3 +18,5 @@
     background-color: #8753CF;
     margin-left: 10px;
 }
+
+.carousel+div>alice-carousel {}

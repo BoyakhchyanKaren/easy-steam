@@ -3,22 +3,13 @@ import { Theme } from "@mui/material";
 import { borderRadius } from "constants/themeConstants";
 
 export const filterResponsiveItems = {
-    0: { items: 2 },
-    600: { items: 2 },
-    960: { items: 2 },
+    0: { items: 1 },
+    600: { items: 1 },
+    960: { items: 1 },
 };
 
 
 export const useFilterStyles = makeStyles((theme: Theme) => ({
-    root: {
-        "& > *": {
-            margin: theme.spacing(0)
-        },
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderWidth: 0
-        },
-        width: '250px',
-    },
     selected: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
@@ -28,9 +19,8 @@ export const useFilterStyles = makeStyles((theme: Theme) => ({
         border: "none",
         outline: "none",
     },
-    container: {
-        display: "flex",
-        justifyContent: "space-betweem"
+    text: {
+        color: theme.palette.common.white
     }
 }));
 
@@ -45,7 +35,7 @@ export const firstItems = [
 
 export const secondItems = [
     { title: 'Тестирование', id: 'title-7' },
-    { title: 'Дополнительные Контенты', id: 'title-8' },
+    { title: 'Дополнительные', id: 'title-8' },
     { title: 'Модификация', id: 'title-9' },
     { title: 'Устройство', id: 'title-10' },
     { title: 'Наборы', id: 'title-11' },

@@ -13,7 +13,7 @@ const RenderPrevButton = ({ carousel }: ButtonProps) => {
         <span className={`${classes.arrowContainer} ${classes.leftArrow}`}>
             <Button onClick={(e) => {
                 e.preventDefault();
-                carousel.slidePrev();
+                carousel?.slidePrev();
             }}>
                 <CarouselArrowLeft sx={{ fontSize: '30px' }} />
             </Button>
@@ -28,7 +28,7 @@ const RenderNextButton = ({ carousel }: ButtonProps) => {
         <span className={`${classes.arrowContainer} ${classes.rightArrow}`}>
             <Button onClick={(e) => {
                 e.preventDefault();
-                carousel.slideNext();
+                carousel?.slideNext();
             }}>
                 <CarouselArrowRigth sx={{ fontSize: '30px' }} />
             </Button>

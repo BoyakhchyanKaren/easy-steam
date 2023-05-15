@@ -5,31 +5,43 @@ import { bestItemCarouselResponsive, useCarouselMainStyles } from '../styles';
 import { RenderCarousel } from '../common';
 import { TextTypography18, PrimaryLightButton } from '@components/common/ui-elements';
 import { useRouter } from 'next/router';
-import { items } from './helpers';
+import { dispatch, useAppSelector } from '@redux/hooks';
+import { gameMiddleware, gameSelector } from '@redux/slices/games';
+import { GamesCardProps } from 'types/reduxTypes';
 
 const BestNewItemCarousel = () => {
     const theme = useTheme();
     const router = useRouter();
     const classes = useCarouselMainStyles();
-    const intialState = new Array(items.length).fill(false);
+    const bestGames = useAppSelector(gameSelector.bestGames);
+    const currentGames = useAppSelector(gameSelector.currentGames);
+    const intialState = new Array(bestGames?.length).fill(false);
     const [buttonStates, setButtonStates] = useState<boolean[]>(intialState);
     const onCardDetailsClick = (itemId: string) => {
         router.push(`/details/${itemId}`);
     };
 
-    const handleClick = (index: number) => {
+    const setCurrentItem = (currentItem: GamesCardProps) => {
+        dispatch(gameMiddleware.setCurrentGames(currentItem));
+    }
+
+    const handleClick = (index: number, currentGame: GamesCardProps) => {
         const newStates = [...buttonStates];
-        if (buttonStates[index] === false) {
+        if (buttonStates[index] === false || !buttonStates[index]) {
             newStates[index] = true;
         } else {
             newStates[index] = false;
-        }
+        };
         setButtonStates(newStates);
+        setCurrentItem(currentGame);
     };
 
-    const buttonStyle = (index: number) => ({
-        backgroundColor: buttonStates[index] ? theme.palette.secondary.main : '',
-    });
+    const buttonStyle = (index: number, itemId: string) => {
+        const currentSelectedItem = currentGames.find((element) => element.id === itemId);
+        return {
+            backgroundColor: buttonStates[index] && currentSelectedItem ? theme.palette.secondary.main : '',
+        }
+    };
 
     const mainCarouselHeader = () => (
         <Grid container alignItems={"center"} sx={{ margin: 'auto', width: carouselWidth }}>
@@ -39,22 +51,22 @@ const BestNewItemCarousel = () => {
         </Grid>
     )
 
-    const renderCard = (item: { image: string, id: string }, index: number) => (
+    const renderCard = (item: GamesCardProps, index: number) => (
         <Card className={classes.bestItemRoot} key={index}>
             <CardMedia className={classes.bestItemMedia} image={item.image} />
             <Grid item container direction={"column"} gap={2} alignItems={"center"} justifyContent={"center"}>
                 <TextTypography18>The Witcher® 3  WILD HUNT</TextTypography18>
                 <Grid container direction={"row"} justifyContent={"center"} alignItems={"center"} gap={2}>
-                    <TextTypography18 sx={{ textDecoration: 'line-through' }}>19.09$</TextTypography18>
-                    <TextTypography18>19.09$</TextTypography18>
+                    {item.hasDiscount && <TextTypography18 sx={{ textDecoration: 'line-through' }}>{item.price}</TextTypography18>}
+                    <TextTypography18>{item.price}</TextTypography18>
                 </Grid>
-                <PrimaryLightButton style={buttonStyle(index)} onClick={() => handleClick(index)} fullWidth>В Корзину</PrimaryLightButton>
+                <PrimaryLightButton style={buttonStyle(index, item.id)} onClick={() => handleClick(index, item)} fullWidth>В Корзину</PrimaryLightButton>
                 <PrimaryLightButton fullWidth onClick={() => onCardDetailsClick(item.id)}>Детали</PrimaryLightButton>
             </Grid>
         </Card >
     );
 
-    const itemsList = items.map(renderCard);
+    const itemsList = bestGames?.map(renderCard);
 
     return (
         <RenderCarousel headerComponent={mainCarouselHeader} responsive={bestItemCarouselResponsive}>
