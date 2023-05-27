@@ -11,6 +11,24 @@ const reducers = createReducer({
   setConditions(state, action: IAction<ConditionsProps>) {
     state.conditions = action.payload;
   },
+  setSelectedFilterItems(state, action: IAction<string[]>) {
+    state.selectedFilterItems = action.payload;
+  },
+  setMaxPrice(state, action: IAction<string | number>) {
+    state.maxPrice = action.payload;
+  },
+  setMinPrice(state, action: IAction<string | number>) {
+    state.minPrice = action.payload;
+  },
+  setIsDiscount(state, action: IAction<boolean>) {
+    state.hasDiscount = action.payload;
+  },
+  setSelectedItem(state, action: IAction<string>) {
+    state.selectItemValue = action.payload;
+  },
+  setSearchValue(state, action: IAction<string>) {
+    state.searchValue = action.payload;
+  },
 });
 
 export default reducers;

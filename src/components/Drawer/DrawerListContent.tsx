@@ -22,6 +22,12 @@ const DrawerListContent = ({ setIsProcessLoading }: DrawerListContentProps) => {
         push('/payment');
     }
 
+    const onBasketClick = () => {
+        setIsProcessLoading(true);
+        dispatch(gameMiddleware.setIsDrawerOpen(false));
+        push('/basket');
+    }
+
     return (
         <>
             <Grid container direction={"column"} gap={2}>
@@ -47,7 +53,7 @@ const DrawerListContent = ({ setIsProcessLoading }: DrawerListContentProps) => {
                             <TextTypography16 sx={{ fontWeight: 'bold' }}>$ 15</TextTypography16>
                         </Grid>
                         <SecondaryLigtButton onClick={onOrderClick}>ОФОРМИТЬ ЗАКАЗ</SecondaryLigtButton>
-                        <PrimaryLightButton onClick={() => push('/basket')}>Перейти в Корзину</PrimaryLightButton>
+                        <PrimaryLightButton onClick={onBasketClick}>Перейти в Корзину</PrimaryLightButton>
                     </>
                 )
             }

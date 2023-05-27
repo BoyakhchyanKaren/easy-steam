@@ -1,16 +1,16 @@
-import ConditionsDetails from "@components/Conditions";
+import TermsDetails from "@components/Terms";
 import { dispatch } from "@redux/hooks";
 import { infoMiddleware } from "@redux/slices/info";
 import { useEffect } from "react";
 
-const Conditions = () => {
+const TermsAndConditions = () => {
     useEffect(() => {
         dispatch(infoMiddleware.getTermsAndConditions());
     }, []);
 
     return (
-        <ConditionsDetails />
+        <TermsDetails />
     )
 };
 
-export default Conditions;
+export default TermsAndConditions;

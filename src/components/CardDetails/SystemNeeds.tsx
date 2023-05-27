@@ -25,7 +25,7 @@ const SystemLine = ({ subTitle1, subTitle2 }: { subTitle1: string, subTitle2: st
 
 const System = ({ title, systemName, systemInfo }: SystemProps) => {
     return (
-        <Grid item>
+        <Grid item md={6} lg={7} xl={8}>
             <TextTypography18 sx={{ marginBottom: margins.bottom8, fontWeight: 500 }}>{`${title}:`}</TextTypography18>
             <Grid container direction={"column"} gap={1}>
                 <TextTypography16>{systemName}</TextTypography16>
@@ -40,7 +40,7 @@ const SystemNeeds = () => {
     return (
         <>
             <TextTypography22>СИСТЕМНЫЕ ТРЕБОВАНИЯ</TextTypography22>
-            <Grid container direction={"row"} justifyContent={"space-between"}>
+            <Grid container direction={"row"} flexWrap={'nowrap'} justifyContent={"space-between"} spacing={6}>
                 <System title="МИНИМАЛЬНЫЕ" systemName={currentGame?.systemName} systemInfo={currentGame?.minimal} />
                 <System title="РЕКОМЕНДОВАННЫЕ" systemName={currentGame?.systemName} systemInfo={currentGame?.suggested} />
             </Grid>

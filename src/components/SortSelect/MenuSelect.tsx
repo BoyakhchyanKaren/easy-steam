@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -7,30 +7,38 @@ import classNames from "classnames";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { getStyles, sortItems, useStyles } from "./styles";
 import { useRouter } from "next/router";
+import { dispatch, useAppSelector } from "@redux/hooks";
+import { infoMiddleware, infoSelector } from "@redux/slices/info";
 
 const SortSelectMenu = () => {
     const classes = useStyles();
     const router = useRouter();
     const theme = useTheme();
-    const [menuItemValue, setMenuItemValue] = useState<string>('');
+    const menuItemValue = useAppSelector(infoSelector.selectItemValue);
     const [menuItemsOpen, setMenuItemsOpen] = useState(false);
 
     const handleChange = (event: SelectChangeEvent<typeof menuItemValue>) => {
         const {
             target: { value },
         } = event;
-        setMenuItemValue(value);
+        dispatch(infoMiddleware.setSelectedItemValue(value));
     };
 
-    const onMenuItemClick = (itemTitle: string) => {
-        const queryParams = { ...router.query, sort: itemTitle };
+    useEffect(() => {
+        const { sort, ...otherQueryParams } = router.query;
+        const queryParams = {
+            ...otherQueryParams,
+            ...(menuItemValue.length ? { sort: menuItemValue } : {}),
+        };
         const newUrl = {
             pathname: router.pathname,
             query: queryParams,
         };
 
         router.push(newUrl, undefined, { shallow: true });
-    };
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [menuItemValue]);
 
     return (
         <FormControl sx={{ width: 300 }}>
@@ -65,7 +73,6 @@ const SortSelectMenu = () => {
                         key={sortItem}
                         value={sortItem}
                         style={getStyles(sortItem, menuItemValue, theme)}
-                        onClick={() => onMenuItemClick(sortItem)}
                     >
                         {sortItem}
                     </MenuItem>

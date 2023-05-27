@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "clear": "rm -rf .next && rm -rf dist && rm -rf out",
+    "lint:win-fix": "yarn run lint --fix",
+    "lint:check": "tsc --noemit",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -34,5 +36,9 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "typescript": "5.0.4"
+  },
+  "engines": {
+    "node": "16.20.0",
+    "npm": "8.19.4"
   }
 }

@@ -3,6 +3,8 @@ import { useTheme, styled, OutlinedInput, Box, InputAdornment } from "@mui/mater
 import { shouldForwardProp } from '@mui/system';
 import { borderRadius, margins, paddings } from "constants/themeConstants";
 import SearchIcon from '@mui/icons-material/Search';
+import { dispatch, useAppSelector } from "@redux/hooks";
+import { infoMiddleware, infoSelector } from "@redux/slices/info";
 
 const OutlineInputStyle = styled(OutlinedInput, { shouldForwardProp })(({ theme }) => ({
     width: 510,
@@ -38,6 +40,11 @@ const Search = () => {
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Поиск"
                 autoComplete="off"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        dispatch(infoMiddleware.setSearchString(searchValue))
+                    }
+                }}
                 startAdornment={
                     <InputAdornment position="start">
                         <SearchIcon sx={{ color: theme.palette.secondary.main }} />

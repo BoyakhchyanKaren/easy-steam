@@ -3,6 +3,9 @@ import { borderRadius, margins, paddings } from "constants/themeConstants";
 import { CustomCheckboxProps, DiscountButtonProps } from "./types";
 import { makeStyles } from "@mui/styles";
 import CircularLoading from "@components/Loading";
+import { dispatch } from "@redux/hooks";
+import { infoMiddleware } from "@redux/slices/info";
+import { IconChecked, IconEmpty } from "assets/icons/Checkbox/CheckboxIcons";
 
 const useCommonStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -113,32 +116,30 @@ const DiscountButton = ({ px, py, price, onClick }: DiscountButtonProps) => {
     const theme = useTheme();
 
     return (
-        <Grid item container alignItems={"center"} justifyContent={"center"}>
-            <Button fullWidth onClick={onClick}>
-                <Grid
-                    item
-                    sx={{
-                        backgroundColor: theme.palette.error.main,
-                        borderTopLeftRadius: borderRadius.radius12,
-                        borderBottomLeftRadius: borderRadius.radius12
-                    }}
-                    mr={'-14px'}
-                    px={px}
-                    py={py}>
-                    <TextTypography22>-50%</TextTypography22>
+        <Button fullWidth onClick={onClick}>
+            <Grid
+                item
+                sx={{
+                    backgroundColor: theme.palette.error.main,
+                    borderTopLeftRadius: borderRadius.radius12,
+                    borderBottomLeftRadius: borderRadius.radius12
+                }}
+                mr={'-14px'}
+                px={px}
+                py={py}>
+                <TextTypography22>-50%</TextTypography22>
+            </Grid>
+            <Card sx={{ borderRadius: borderRadius.radius16 }}>
+                <Grid sx={{ height: '45px' }} container flexWrap={"nowrap"} justifyContent={"space-between"} alignItems={"center"} gap={1} px={paddings.leftRight12} py={paddings.topBottom6}>
+                    <TextTypography22 sx={{ textDecoration: 'line-through', color: theme.palette.common.black }}>
+                        {price}
+                    </TextTypography22>
+                    <TextTypography22 sx={{ color: theme.palette.error.main }}>
+                        {price}
+                    </TextTypography22>
                 </Grid>
-                <Card sx={{ borderRadius: borderRadius.radius16 }}>
-                    <Grid sx={{ height: '45px' }} container flexWrap={"nowrap"} justifyContent={"space-between"} alignItems={"center"} gap={1} px={paddings.leftRight12} py={paddings.topBottom6}>
-                        <TextTypography22 sx={{ textDecoration: 'line-through', color: theme.palette.common.black }}>
-                            {price}
-                        </TextTypography22>
-                        <TextTypography22 sx={{ color: theme.palette.error.main }}>
-                            {price}
-                        </TextTypography22>
-                    </Grid>
-                </Card>
-            </Button>
-        </Grid>
+            </Card>
+        </Button>
     )
 };
 
@@ -150,10 +151,17 @@ const ButtonWitoutDiscount = ({ price }: { price?: string }) => {
     )
 }
 
-const CustomCheckbox = ({ fontSize }: CustomCheckboxProps) => {
+const CustomCheckbox = ({ fontSize, value, onChange, sx, checked }: CustomCheckboxProps) => {
     const theme = useTheme();
+
     return (
         <Checkbox
+            value={value}
+            disableRipple
+            checked={checked}
+            onChange={onChange}
+            icon={<IconEmpty sx={sx} />}
+            checkedIcon={<IconChecked sx={sx} />}
             sx={{
                 color: theme.palette.common.white,
                 "& .MuiSvgIcon-root": { fontSize: fontSize ?? 40 },

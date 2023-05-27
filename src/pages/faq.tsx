@@ -1,16 +1,16 @@
-import TermsDetails from "@components/Terms";
+import FAQBanner from "@components/FAQ";
 import { dispatch } from "@redux/hooks";
 import { infoMiddleware } from "@redux/slices/info";
 import { useEffect } from "react";
 
-const Terms = () => {
+const FAQ = () => {
     useEffect(() => {
         dispatch(infoMiddleware.getTermsAndConditions());
     }, []);
 
     return (
-        <TermsDetails />
+        <FAQBanner />
     )
 };
 
-export default Terms;
+export default FAQ;

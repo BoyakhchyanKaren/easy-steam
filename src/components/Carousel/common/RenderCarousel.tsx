@@ -22,28 +22,28 @@ const RenderCarousel = ({ children, headerComponent, responsive, autoWidth, disa
     let carousel: AliceCarousel;
 
     return (
-        <Grid item container xs={12} padding={paddings.all24} {...props}>
-            <Grid container alignItems={"center"} pb={paddings.bottom8} className={cx('carousel')}>
+        <Grid container padding={paddings.all24} {...props}>
+            <Grid container alignItems={"center"} pb={paddings.bottom8} className={cx('carousel')} gap={2}>
                 {headerComponent?.()}
+                <AliceCarousel
+                    mouseTracking
+                    responsive={responsive}
+                    ref={(carouselElement) => {
+                        if (carouselElement) {
+                            carousel = carouselElement
+                        }
+                    }}
+                    disableDotsControls={disableDotsControls}
+                    autoWidth={autoWidth}
+                    renderNextButton={() => <RenderNextButton carousel={carousel} />}
+                    renderPrevButton={() => <RenderPrevButton carousel={carousel} />}
+                    renderDotsItem={(e: DotsItem) => (
+                        <RenderCustomDot key={e.activeIndex} isActive={e.isActive} />
+                    )}
+                >
+                    {children}
+                </AliceCarousel>
             </Grid>
-            <AliceCarousel
-                mouseTracking
-                responsive={responsive}
-                ref={(carouselElement) => {
-                    if (carouselElement) {
-                        carousel = carouselElement
-                    }
-                }}
-                disableDotsControls={disableDotsControls}
-                autoWidth={autoWidth}
-                renderNextButton={() => <RenderNextButton carousel={carousel} />}
-                renderPrevButton={() => <RenderPrevButton carousel={carousel} />}
-                renderDotsItem={(e: DotsItem) => (
-                    <RenderCustomDot key={e.activeIndex} isActive={e.isActive} />
-                )}
-            >
-                {children}
-            </AliceCarousel>
         </Grid>
     )
 };

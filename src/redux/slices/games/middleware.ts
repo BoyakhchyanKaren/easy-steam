@@ -85,11 +85,13 @@ const setFilterItemsOpen = (open: boolean) => (dispatch: AppDispatch) => {
   }
 };
 
-export default {
+const gameActions = {
   getGames,
   setCurrentGame,
   setCurrentGames,
   setIsDrawerOpen,
   removeGameFromBasket,
   setFilterItemsOpen
-};
+}
+
+export default gameActions;
