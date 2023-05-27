@@ -47,4 +47,18 @@ export interface ConditionsProps {
 export interface InformationProps {
     terms: string;
     conditions: ConditionsProps;
+    selectedFilterItems: string[];
+    minPrice: string | number;
+    maxPrice: string | number;
+    hasDiscount: boolean;
+    selectItemValue: string;
+    searchValue: string;
+}
+
+export enum FilterItemName {
+    searchValue = 'searchValue',
+    carouselFilter = 'carouselFilter',
+    discount = 'discount',
+    prices = 'prices',
+    sortFilter = 'sortFilter'
 }

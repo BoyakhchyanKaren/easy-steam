@@ -1,7 +1,8 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { borderRadius } from "constants/themeConstants";
 
-export const useDetailsCarouselStyles = makeStyles(() => ({
+export const useDetailsCarouselStyles = makeStyles((theme: Theme) => ({
     root: {
         width: 930,
         height: 520,
@@ -10,6 +11,21 @@ export const useDetailsCarouselStyles = makeStyles(() => ({
         borderRadius: borderRadius.radius12,
         display: 'flex',
         justifyContent: 'space-between',
+        [theme.breakpoints.between('md', 'lg')]: {
+            width: 550,
+        },
+        [theme.breakpoints.between('lg', 'xl')]: {
+            width: 650,
+        },
+    },
+    discountContainer: {
+        marginLeft: '-20px',
+        [theme.breakpoints.between('md', 'lg')]: {
+            marginLeft: '-5px'
+        },
+        [theme.breakpoints.between('lg', 'xl')]: {
+            marginLeft: '-8px'
+        }
     },
     media: {
         height: 300,
@@ -40,6 +56,21 @@ export const useDetailsCarouselStyles = makeStyles(() => ({
         right: 0,
         transform: 'translateX(50%)',
     },
+    discountButton: {
+        backgroundColor: theme.palette.error.main,
+        borderTopLeftRadius: borderRadius.radius12,
+        color: theme.palette.common.white,
+        borderBottomLeftRadius: borderRadius.radius12,
+        padding: theme.spacing(1.5, 0)
+    },
+    pricesButton: {
+        backgroundColor: theme.palette.common.white,
+        borderRadius: borderRadius.radius12,
+        color: theme.palette.common.white,
+        padding: theme.spacing(1.5, 0),
+        display: 'flex',
+        gap: 2
+    }
 }));
 
 export const mainCarouselResponsive = {

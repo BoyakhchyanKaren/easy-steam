@@ -2,7 +2,7 @@ import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { borderRadius, paddings } from "constants/themeConstants";
 
-export const usePaymentPageStyles = makeStyles((theme: Theme) => ({
+export const usePaymentPageStyles = makeStyles<Theme>((theme: Theme) => ({
     root: {
         width: '100%',
         height: 180,
@@ -12,10 +12,17 @@ export const usePaymentPageStyles = makeStyles((theme: Theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        "&:hover": {
+            cursor: 'pointer'
+        }
+    },
+    isSelected: {
+        backgroundColor: theme.palette.secondary.main,
     },
     media: {
         height: '100%',
         width: '50%',
         borderRadius: borderRadius.radius12,
-    }
+    },
+
 }));

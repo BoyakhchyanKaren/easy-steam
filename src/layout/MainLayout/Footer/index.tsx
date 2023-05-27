@@ -1,7 +1,8 @@
 import { Paper, Box, useTheme } from "@mui/material";
 import SteamIcon from "assets/icons/SteamIcon/SteamIcon";
 import Content from "./Content";
-import { TextTypography } from "layout/common";
+import { TextTypography16 } from "@components/common/ui-elements";
+import Links from "./Links";
 
 const Footer = () => {
     const theme = useTheme();
@@ -13,15 +14,7 @@ const Footer = () => {
                     <SteamIcon />
                 </Box>
                 <Content />
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'space-between' }}>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                    <TextTypography>http//.Link here.com</TextTypography>
-                </Box>
+                <Links />
             </Box>
         </Paper >
     )

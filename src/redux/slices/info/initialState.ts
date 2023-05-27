@@ -7,4 +7,10 @@ export const getInitialState = (): InformationProps => ({
     whereToTake: '',
     howToTake: '',
   },
+  selectedFilterItems: [],
+  minPrice: '',
+  maxPrice: '',
+  hasDiscount: false,
+  selectItemValue: '',
+  searchValue: '',
 });

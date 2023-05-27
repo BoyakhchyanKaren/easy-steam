@@ -2,6 +2,7 @@ import React, { Children } from 'react';
 import createEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
+import { globalStyles } from 'themes/styles';
 
 const createEmotionCache = () => createCache({ key: 'css' });
 class CustomDocument extends Document {
@@ -14,6 +15,9 @@ class CustomDocument extends Document {
           <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet" />
         </Head>
         <body>
+          <style>
+            {globalStyles}
+          </style>
           <Main />
           <NextScript />
         </body>

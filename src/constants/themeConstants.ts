@@ -1,4 +1,5 @@
-export const carouselWidth = 1400;
+export const carouselWidth = 1500;
+export const itemsCarouselWidth = 1600;
 export const toolbarHeaderHeight = 90;
 export const margins = {
   auto: 'auto',

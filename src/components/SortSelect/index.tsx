@@ -6,7 +6,7 @@ import SortSelectMenu from "./MenuSelect";
 
 const SortSelect = () => {
     return (
-        <Grid container direction={"row"} alignItems={"center"} gap={1}>
+        <Grid container direction={"row"} alignItems={"center"} gap={1} flexWrap={"nowrap"}>
             <IconButton>
                 <SortIcon />
             </IconButton>

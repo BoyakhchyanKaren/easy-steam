@@ -10,16 +10,38 @@ export const useCarouselMainStyles = makeStyles((theme: Theme) => ({
         padding: paddings.all12,
         backgroundColor: theme.palette.primary.main,
         borderRadius: borderRadius.radius10,
+        [theme.breakpoints.between('md', 'lg')]: {
+            width: 800,
+        },
+        [theme.breakpoints.between('lg', 'xl')]: {
+            width: 950
+        },
+        [theme.breakpoints.between('xl', 1800)]: {
+            width: 1100
+        }
     },
     bestItemRoot: {
-        width: 440,
-        margin: 'auto',
+        width: 410,
+        margin: '0 auto',
         padding: paddings.all16,
         backgroundColor: theme.palette.primary.main,
         borderRadius: borderRadius.radius10,
+        [theme.breakpoints.between('md', 'lg')]: {
+            width: 260,
+        },
+        [theme.breakpoints.between('lg', 'xl')]: {
+            width: 310,
+        },
+        [theme.breakpoints.between('xl', 1800)]: {
+            width: 330
+        },
+        [theme.breakpoints.between(1800, 1900)]: {
+            width: 460
+        }
     },
     bestItemMedia: {
         height: 250,
+        width: '100%',
         marginBottom: margins.bottom8,
         borderRadius: borderRadius.radius10,
     },

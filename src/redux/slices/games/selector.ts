@@ -17,7 +17,7 @@ const allGames = createSelector([selector], (state) => {
 });
 const isFilterItemsOpen = createSelector([selector], (state) => state.isFilterItemsOpen);
 
-export default {
+const gameSelectorStates = {
   gameImages,
   bestGames,
   popularGames,
@@ -27,3 +27,5 @@ export default {
   allGames,
   isFilterItemsOpen
 };
+
+export default gameSelectorStates

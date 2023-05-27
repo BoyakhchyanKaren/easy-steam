@@ -1,32 +1,79 @@
-import React, { useState, useMemo } from "react";
-import { Grid, IconButton, Fade } from "@mui/material";
-import { carouselWidth, margins } from "constants/themeConstants";
-import { FilterIcon } from "assets/icons/Filter/FilterIcon";
+import React, { useEffect } from "react";
+import { Grid, IconButton, Grow, Button, useTheme } from "@mui/material";
+import { margins } from "constants/themeConstants";
+import { FilterIcon, RemoveFilterIcon } from "assets/icons/Filter/FilterIcon";
 import { TextTypography18, CustomDivider } from "@components/common/ui-elements";
-import { RenderCarousel } from "@components/Carousel/common";
-import { filterResponsiveItems, firstItems, secondItems, thirdItems } from "./helpers";
+import { firstItems, secondItems, thirdItems, useFilterStyles } from "./helpers";
 import SortSelect from "@components/SortSelect";
 import FilterContent from "./FilterContent";
-import RenderFilterItem from "./RenderFilterItem";
 import { dispatch, useAppSelector } from "@redux/hooks";
 import { gameMiddleware, gameSelector } from "@redux/slices/games";
+import { useRouter } from "next/router";
+import FilterCarousel from "./FilterCarousel";
+import { infoMiddleware, infoSelector } from "@redux/slices/info";
 
 const Filter = () => {
+    const classes = useFilterStyles();
+    const router = useRouter();
+    const theme = useTheme();
+    const items = [firstItems, secondItems, thirdItems];
+
     const isFilterItemsOpen = useAppSelector(gameSelector.isFilterItemsOpen);
+    const selectedItemTitle = useAppSelector(infoSelector.selectedFilterItems);
     const handleShowFilters = () => {
         dispatch(gameMiddleware.setFilterItemsOpen(!isFilterItemsOpen))
     }
-    const items = [firstItems, secondItems, thirdItems, thirdItems, secondItems, firstItems];
+    const onCardItemClick = (cardItemTitle: string) => {
+        dispatch(infoMiddleware.setSelectedItems(cardItemTitle))
+    };
 
-    const itemsList = useMemo(() => {
-        return items?.map((item) => {
-            return <RenderFilterItem filterItem={item} />
+    useEffect(() => {
+        const url = {
+            pathname: router.pathname,
+            query: { ...router.query, category: selectedItemTitle }
+        };
+        router.push(url, undefined, { shallow: true });
+    },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [selectedItemTitle]);
+
+    const renderedItems = items.map((filterItem) => {
+        return filterItem.map((cardItem) => {
+            const selectedFilterButton = !!selectedItemTitle.find((elem) => elem === cardItem.title);
+            const colorCondition = selectedFilterButton ? theme.palette.primary.main : '';
+
+            return (
+                <Grid item xs={5.5} container justifyContent={"flex-start"} alignItems={"flex-end"} key={cardItem.id}>
+                    <Button
+                        classes={{
+                            text: classes.text,
+                        }}
+                        className={classes.filterButton}
+                        sx={{
+                            backgroundColor: colorCondition,
+                            "&:hover": {
+                                backgroundColor: colorCondition,
+                            }
+                        }}
+                        onClick={() => onCardItemClick(cardItem.title)}
+                        endIcon={
+                            selectedFilterButton ? (
+                                <RemoveFilterIcon sx={{
+                                    marginLeft: margins.left12
+                                }} />
+                            ) : null
+                        }
+                    >
+                        {cardItem.title}
+                    </Button>
+                </Grid >
+            )
         })
-    }, []);
+    })
 
     return (
-        <Grid container direction={"column"} gap={2}>
-            <Grid container item alignItems={"center"} sx={{ margin: 'auto', width: carouselWidth }} xs={12}>
+        <Grid container direction={"column"} gap={2} className={classes.responsiveHeader}>
+            <Grid container item alignItems={"center"} sx={{ margin: 'auto' }} xs={12}>
                 <Grid item xs={3} container alignItems={"center"}>
                     <IconButton onClick={handleShowFilters}>
                         <FilterIcon />
@@ -35,30 +82,30 @@ const Filter = () => {
                         Фильтры
                     </TextTypography18>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={8} container flexWrap={"nowrap"}>
                     <SortSelect />
                 </Grid>
             </Grid>
             {
                 isFilterItemsOpen && (
-                    <Fade
+                    <Grow
                         in={isFilterItemsOpen}
                         style={{ transformOrigin: '0 0 0' }}
                         {...(isFilterItemsOpen ? { timeout: 700 } : { timeout: 700 })}
                     >
-                        <Grid sx={{ margin: 'auto', width: carouselWidth }} container>
-                            <FilterContent />
-                            <Grid item width={1000} sx={{ marginLeft: margins.left48 }}>
+                        <Grid container spacing={2}>
+                            <Grid item md={5} lg={4} xl={4}>
+                                <FilterContent />
+                            </Grid>
+                            <Grid item md={7} lg={8} xl={8}>
                                 <TextTypography18>Категории</TextTypography18>
                                 <Grid item py={1}>
                                     <CustomDivider />
                                 </Grid>
-                                <RenderCarousel responsive={filterResponsiveItems} autoWidth={true} disableDotsControls={true}>
-                                    {itemsList}
-                                </RenderCarousel>
+                                <FilterCarousel renderedItems={renderedItems} />
                             </Grid>
                         </Grid>
-                    </Fade>
+                    </Grow>
                 )
             }
         </Grid>

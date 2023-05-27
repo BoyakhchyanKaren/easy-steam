@@ -9,8 +9,7 @@ import SystemNeeds from "./SystemNeeds";
 import { useRouter } from "next/router";
 import { dispatch, useAppSelector } from "@redux/hooks";
 import { gameMiddleware, gameSelector } from "@redux/slices/games";
-import { GamesCardProps } from "types/reduxTypes";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 const Details = () => {
     const { query } = useRouter();
@@ -20,8 +19,7 @@ const Details = () => {
         ...popularGames,
         ...bestGames
     ];
-    const currentItem = useMemo(() => allGames.find((games) => games.id === query.id), [allGames, query.id]);
-
+    const currentItem = allGames?.find((games) => games.id === query.id);
 
     useEffect(() => {
         if (currentItem) {
