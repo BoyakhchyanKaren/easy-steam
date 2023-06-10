@@ -11,7 +11,7 @@ const PaymentBanner = ({ title }: { title: string }) => {
         <Card classes={{ root: classes.paymentRootCard }}>
             <Grid container direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
                 <TextTypography18>Общая Сумма</TextTypography18>
-                <TextTypography18>$ 16</TextTypography18>
+                <TextTypography18>₽ 16</TextTypography18>
             </Grid>
             <SecondaryLigtButton onClick={() => router.push('/')}>{title}</SecondaryLigtButton>
             <PrimaryLightButton>{'Скачать Инвойс'}</PrimaryLightButton>

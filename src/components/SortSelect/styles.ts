@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const sortItems = [
-    'Алфавитный',
-    'Снижение цены',
-    'Увеличение цены',
+    { visibleTitle: 'Алфавитный', selectedTitle: 'По алфавиту' },
+    { visibleTitle: 'Снижение цены', selectedTitle: 'Сначала дешевые' },
+    { visibleTitle: 'Увеличение цены', selectedTitle: 'Сначала дорогие ' }
 ];

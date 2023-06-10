@@ -36,6 +36,12 @@ const TextTypography22 = styled(Typography)(({ theme }) => ({
     fontWeight: 600
 }));
 
+const TextTypography32 = styled(Typography)(({ theme }) => ({
+    fontSize: theme.typography.pxToRem(32),
+    color: theme.palette.common.white,
+    fontWeight: 600
+}));
+
 const CustomDivider = styled(Divider)(({ theme }) => ({
     height: 2,
     background: theme.palette.primary.light
@@ -73,6 +79,10 @@ const PrimaryLightButton = styled(Button)(({ theme }) => ({
     fontWeight: 500,
     "&:hover": {
         backgroundColor: theme.palette.secondary.main
+    },
+    "&.Mui-disabled": {
+        color: 'white',
+        backgroundColor: 'transparent'
     }
 }));
 
@@ -85,6 +95,10 @@ const SecondaryLigtButton = styled(Button)(({ theme }) => ({
     fontWeight: 500,
     "&:hover": {
         backgroundColor: theme.palette.primary.main
+    },
+    "&.Mui-disabled": {
+        color: theme.palette.secondary.main,
+        backgroundColor: 'transparent'
     }
 }));
 
@@ -186,6 +200,7 @@ export {
     TextTypography18,
     TextTypography22,
     TextTypography16,
+    TextTypography32,
     CustomDivider,
     FilterButton,
     FilterButtonNextButton,

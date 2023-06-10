@@ -17,7 +17,7 @@ const PaymentDetails = () => {
                         <PaymentContent />
                     </Grid>
                     <Grid item xs={4}>
-                        <CountCard title={"Платить $ 15"} />
+                        <CountCard title={"Заплатить 15 ₽"} />
                     </Grid>
                 </Grid>
             </Grid>

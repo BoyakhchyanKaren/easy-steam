@@ -50,7 +50,7 @@ const DrawerListContent = ({ setIsProcessLoading }: DrawerListContentProps) => {
                     <>
                         <Grid container direction={"row"} justifyContent={"space-between"}>
                             <TextTypography16>Сумма к оплате</TextTypography16>
-                            <TextTypography16 sx={{ fontWeight: 'bold' }}>$ 15</TextTypography16>
+                            <TextTypography16 sx={{ fontWeight: 'bold' }}>₽ 15</TextTypography16>
                         </Grid>
                         <SecondaryLigtButton onClick={onOrderClick}>ОФОРМИТЬ ЗАКАЗ</SecondaryLigtButton>
                         <PrimaryLightButton onClick={onBasketClick}>Перейти в Корзину</PrimaryLightButton>
