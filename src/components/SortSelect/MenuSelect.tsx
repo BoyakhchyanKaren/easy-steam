@@ -70,11 +70,11 @@ const SortSelectMenu = () => {
                 </MenuItem>
                 {sortItems.map((sortItem) => (
                     <MenuItem
-                        key={sortItem}
-                        value={sortItem}
-                        style={getStyles(sortItem, menuItemValue, theme)}
+                        key={sortItem.selectedTitle}
+                        value={sortItem.selectedTitle}
+                        style={getStyles(sortItem.visibleTitle, menuItemValue, theme)}
                     >
-                        {sortItem}
+                        {sortItem.visibleTitle}
                     </MenuItem>
                 ))}
             </Select>
